@@ -31,7 +31,7 @@ namespace {
     }
     return i * j;
   }
-} // namespace
+}  // namespace
 
 
 
@@ -71,7 +71,8 @@ namespace TestPackage {
   }
 
   std::string getSpacesToPrintAfterMajorColor(int i) {
-    int numOfSpacesAfterMajorColor = maxlengthOfMajorColor - static_cast<int>(strlen(majorColor[i])) + 4;
+    int numOfSpacesAfterMajorColor = maxlengthOfMajorColor -
+      static_cast<int>(strlen(majorColor[i])) + 4;
     std::string spaceAfterMajorNumber = "";
     for (auto p = 0; p < numOfSpacesAfterMajorColor; p++) {
       spaceAfterMajorNumber += " ";
@@ -120,7 +121,7 @@ namespace TestPackage {
     }
     assert(true == pos_matches);
   }
-}
+}  //namespace TestPackage
 
 
 
