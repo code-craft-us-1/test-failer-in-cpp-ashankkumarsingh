@@ -128,7 +128,7 @@ namespace TestPackage {
 
 
 int main() {
-  int result = printColorMap();
+  printColorMap();
   TestPackage::testAlignment();
   std::cout << "All is well (maybe!)\n";
   return 0;
