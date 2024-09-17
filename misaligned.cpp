@@ -121,7 +121,7 @@ namespace TestPackage {
     }
     assert(true == pos_matches);
   }
-}  //namespace TestPackage
+}  // namespace TestPackage
 
 
 
