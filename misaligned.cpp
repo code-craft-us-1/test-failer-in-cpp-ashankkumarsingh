@@ -1,6 +1,8 @@
 #include <assert.h>
 #include <iostream>
 #include <sstream>
+#include <string>
+#include <limits>
 
 namespace TestPackage {
   std::string generateColorPairNumberStringForTest(int i, int j);
