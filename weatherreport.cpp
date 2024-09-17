@@ -8,7 +8,7 @@ using std::string;
 
 namespace WeatherSpace {
 class IWeatherSensor {
-  public:
+ public:
     virtual double TemperatureInC() const = 0;
     virtual int Precipitation() const = 0;
     virtual int Humidity() const = 0;
