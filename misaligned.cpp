@@ -2,14 +2,12 @@
 #include <iostream>
 #include <sstream>
 
-namespace TestPackage
-{
+namespace TestPackage{
   std::string generateColorPairNumberStringForTest(int i, int j);
   void testAlignment();
 }
 
-namespace 
-{
+namespace{
   const char* majorColor[] = { "White", "Red", "Black", "Yellow", "Violet" };
   const char* minorColor[] = { "Blue", "Orange", "Green", "Brown", "Slate" };
 
@@ -17,8 +15,7 @@ namespace
   int numOfMinorColors = sizeof(minorColor) / sizeof(minorColor[0]);
   int totalNumberOfPairs = numOfMajorColors * numOfMinorColors;
 
-  std::string generateColorPairNumberString(int i, int j)
-  {
+  std::string generateColorPairNumberString(int i, int j){
     std::ostringstream str1;
     str1 << i * 5 + j << " | " << majorColor[i] << " | " << minorColor[i] << "\n";
     return str1.str();
@@ -29,7 +26,7 @@ namespace
     int i = 0, j = 0;
     for (i = 0; i < 5; i++) {
       for (j = 0; j < 5; j++) {
-        std::cout << generateColorPairNumberString(i,j);
+        std::cout << generateColorPairNumberString(i, j);
       }
     }
     return i * j;
@@ -39,14 +36,11 @@ namespace
 
 
 // The variables and methods used in this package would satify the test cases written in main().
-namespace TestPackage
-{
+namespace TestPackage{
 
-  int getMaxLengthOfMajorColor()
-  {
+  int getMaxLengthOfMajorColor(){
     int max = INT_MIN;
-    for (auto i = 0; i < numOfMajorColors; i++)
-    {
+    for (auto i = 0; i < numOfMajorColors; i++){
       if (int(strlen(majorColor[i])) > max)
         max = strlen(majorColor[i]);
     }
@@ -55,45 +49,38 @@ namespace TestPackage
 
   int maxlengthOfMajorColor = getMaxLengthOfMajorColor();
 
-  int getNumberOfDigits(int n)
-  {
+  int getNumberOfDigits(int n){
     if (n == 0) return 1;
     int temp = n;
     int count = 0;
-    while (temp > 0)
-    {
+    while (temp > 0){
       count++; temp = temp / 10;
     }
     return count;
   }
 
-  std::string getSpacesToPrintAfterPairNumber(int i, int j)
-  {
+  std::string getSpacesToPrintAfterPairNumber(int i, int j){
     int spaces = getNumberOfDigits(totalNumberOfPairs) - getNumberOfDigits((i * 5) + j) + 4;
 
     std::string spaceAfterPairNumber = "";
-    for (auto k = 0; k < spaces; k++)
-    {
+    for (auto k = 0; k < spaces; k++){
       spaceAfterPairNumber += " ";
     }
 
     return spaceAfterPairNumber;
   }
 
-  std::string getSpacesToPrintAfterMajorColor(int i)
-  {
+  std::string getSpacesToPrintAfterMajorColor(int i){
     int numOfSpacesAfterMajorColor = maxlengthOfMajorColor - int(strlen(majorColor[i])) + 4;
     std::string spaceAfterMajorNumber = "";
-    for (auto p = 0; p < numOfSpacesAfterMajorColor; p++)
-    {
+    for (auto p = 0; p < numOfSpacesAfterMajorColor; p++){
       spaceAfterMajorNumber += " ";
     }
     return spaceAfterMajorNumber;
   }
 
 
-  std::string generateColorPairNumberStringForTest(int i, int j)
-  {
+  std::string generateColorPairNumberStringForTest(int i, int j){
     std::ostringstream str1;
     str1 << i * 5 + j << getSpacesToPrintAfterPairNumber(i, j) + "| " << majorColor[i] << getSpacesToPrintAfterMajorColor(i) + "| " << minorColor[i] << "\n";
     return str1.str();
@@ -110,25 +97,20 @@ namespace TestPackage
     return i * j;
   }
 
-  void testAlignment()
-  {
+  void testAlignment(){
     std::string tempStr = "";
     bool pos_matches = true;
     int pos_of_pipe = -1;
 
     for (auto i = 0; i < 5; i++) {
-      if (pos_matches)
-      {
+      if (pos_matches){
         for (auto j = 0; j < 5; j++) {
-          if (pos_matches)
-          {
+          if (pos_matches){
             tempStr = generateColorPairNumberString(i, j);
-            if ((i * 5 + j) == 0)
-            {
+            if ((i * 5 + j) == 0){
               pos_of_pipe = tempStr.find("|");
             }
-            else
-            {
+            else{
               int curr_pos = tempStr.find("|");
               pos_matches = (curr_pos == pos_of_pipe);
             }
@@ -143,7 +125,7 @@ namespace TestPackage
 
 
 int main() {
-  int result = printColorMap(); 
+  int result = printColorMap();
   TestPackage::testAlignment();
   std::cout << "All is well (maybe!)\n";
   return 0;
