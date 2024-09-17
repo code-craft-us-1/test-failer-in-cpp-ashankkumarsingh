@@ -31,7 +31,7 @@ namespace {
     }
     return i * j;
   }
-}
+} // namespace
 
 
 
@@ -41,7 +41,7 @@ namespace TestPackage {
   int getMaxLengthOfMajorColor() {
     int max = INT_MIN;
     for (auto i = 0; i < numOfMajorColors; i++) {
-      if (int(strlen(majorColor[i])) > max)
+      if (static_cast<int>(strlen(majorColor[i])) > max)
         max = strlen(majorColor[i]);
     }
     return max;
@@ -71,7 +71,7 @@ namespace TestPackage {
   }
 
   std::string getSpacesToPrintAfterMajorColor(int i) {
-    int numOfSpacesAfterMajorColor = maxlengthOfMajorColor - int(strlen(majorColor[i])) + 4;
+    int numOfSpacesAfterMajorColor = maxlengthOfMajorColor - static_cast<int>(strlen(majorColor[i])) + 4;
     std::string spaceAfterMajorNumber = "";
     for (auto p = 0; p < numOfSpacesAfterMajorColor; p++) {
       spaceAfterMajorNumber += " ";
@@ -82,7 +82,8 @@ namespace TestPackage {
 
   std::string generateColorPairNumberStringForTest(int i, int j) {
     std::ostringstream str1;
-    str1 << i * 5 + j << getSpacesToPrintAfterPairNumber(i, j) + "| " << majorColor[i] << getSpacesToPrintAfterMajorColor(i) + "| " << minorColor[i] << "\n";
+    str1 << i * 5 + j << getSpacesToPrintAfterPairNumber(i, j) + "| " <<
+      majorColor[i] << getSpacesToPrintAfterMajorColor(i) + "| " << minorColor[i] << "\n";
     return str1.str();
   }
 
@@ -109,8 +110,7 @@ namespace TestPackage {
             tempStr = generateColorPairNumberString(i, j);
             if ((i * 5 + j) == 0) {
               pos_of_pipe = tempStr.find("|");
-            }
-            else {
+            } else {
               int curr_pos = tempStr.find("|");
               pos_matches = (curr_pos == pos_of_pipe);
             }
